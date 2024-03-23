@@ -1,0 +1,91 @@
+.formContaner
+{
+    background-color: #cf8deb;
+    height: 100vh;
+    display:flex;
+    //can apply align or justify only if display is flex
+    align-items: center;
+    justify-content: center;
+
+
+    // // you can write children inside of your parents and avoids conflicts
+    //manipulating contents inside the flex box
+    .formWrapper{
+        background-color: white;
+        // 20px top and bottom and 60px from left and right 
+        padding : 20px 60px;
+        border-radius : 10px;
+        display:flex; //col1 - outchat col2-fields col3-doyouhave
+        flex-direction: column;
+        gap : 10px;
+        align-items: center;
+
+        .logo{
+            color: #753b8e;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .title{
+            color: rgb(47, 121, 207);
+            font-size: small;
+        }
+        
+        form{
+            display:flex;
+            flex-direction: column;
+            gap:15px;
+            
+            //must be inside form or even below form can do
+            input{
+                padding: 15px;
+                border: none;
+                border-bottom:1px solid #000000 ;
+            &::placeholder{
+                color:rgb(175,175,175); //made placeholders slightly lighter
+            }
+            }
+
+            button{
+                background-color: #2196F3;
+                color: white;
+                padding: 10px;
+                font-weight: bold;
+                border:none;
+                cursor: pointer;
+            }
+
+
+            //add avatar thing
+            label{
+                display:flex;
+                align-items:center ;
+                // font-weight:bold;
+                gap:10px;
+                color:#712493;
+                font-size: 12px;
+                cursor: pointer;
+
+                img{
+                    width: 32px;
+                }
+
+            }
+
+            
+
+
+
+        }
+
+        //link on the bottom
+        p{
+            color: #2196F3;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+      
+            
+    }
+}
