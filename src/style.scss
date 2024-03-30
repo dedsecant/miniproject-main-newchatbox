@@ -192,6 +192,11 @@
                     border-radius: 50%;
                     object-fit:cover;
                 }
+
+                .userChatInfo{
+                    span{font-size: 18px; font-weight: 500;}
+                    p{font-size: 11px;color : rgb(197, 184, 184);font-weight: normal;}
+                }
             }
 
         
@@ -199,6 +204,141 @@
         .chat   //now brings chat to the center
         {
             flex: 2;
+
+            .chatInfo
+            {
+                height: 50px;
+                background-color: rgb(11, 90, 108);
+                display: flex;
+                align-items: center;
+                justify-content:space-between ;
+                
+                padding: 10px;
+                color:lightgray
+            }
+
+            // need to insert cam, add user and more icons in chat.jsx kept it empty for now
+            .chatIcons{
+                display: flex;
+                //added margins to push it to the righmost corner, idk why isnt justify between isnt working
+                margin-left: 550px;
+                gap:10px;
+
+                img{
+                    height:24px;
+                    cursor: pointer;
+                }
+            }
+
+
+            .messages{
+                background-color: #8f9ca7;
+                padding: 10px;
+                height: calc(100% - 160px);     //gives us the area where messages will be seen on the chat box 160px already taken by top bar and input box with 
+                overflow: scroll;   //hides the message, scroll down and ull see more
+
+
+                .message{
+                    display: flex;
+                    gap:20px;
+                    margin-bottom: 20px;
+
+
+                    .messageInfo{
+                        display: flex;
+                        flex-direction: column;
+                        color: rgb(71, 69, 69);
+                        font-weight: 300;
+
+                        img{
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
+                    }
+                    .messageContent{
+                        max-width: 80%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+
+                        p{
+                            background-color: #ffffff;
+                            padding: 10px 20px;
+                            border-radius: 0px 10px 10px 10px;
+                        }
+
+                        img{
+                            width: 50%;
+                        }
+                    }
+
+                    &.owner{
+                        flex-direction: row-reverse ;
+
+                        .messageContent{
+
+                        align-items: flex-end ;
+                            p{
+                                background-color: rgb(77, 110, 171);
+                                color: white;
+                                border-radius:10px 0px 10px 10px ;
+                                max-width: max-content;
+                            }
+                            
+                        }
+                    }
+
+                }
+            }
+
+            // .input is class name 
+            .input{
+                height: 50px;
+                background-color: #fff;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                
+                input{
+                    width: 100%;
+                    border:none;
+                    outline: none;
+                    color: #0b2a43;
+                    font-size: 18px;
+
+                    &::placeholder{
+                        color: lightgrey;
+                    }
+                }
+
+                .send{
+                    display:flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    img{
+                        height: 24px;
+                        cursor: pointer;
+                    }
+
+                    button{
+                        border: none;
+                        padding: 10px 15px ; //10 for left 15 for right
+                        color: white;
+                        background-color: #004cda;
+                    }
+
+                }
+
+
+            }
+
+
+
+
         }
 
 
