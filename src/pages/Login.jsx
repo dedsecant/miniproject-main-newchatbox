@@ -13,8 +13,8 @@ const Login = () => {
             <form>
 
                 {/* in login page i need only email and password  */}
-                <input type="email"  placeholder="email" />
-                <input type="password"  placeholder="password" />
+                <input type="email"  placeholder="Email" />
+                <input type="password"  placeholder="Password" />
                 
 
                 <button>Sign in</button>
