@@ -1,34 +1,40 @@
-import React from 'react'
+import { doc, onSnapshot } from "firebase/firestore";
+import React, { useEffect, useState, useContext } from 'react'
+import { db } from "../firebase";
+import { AuthContext } from "../context/AuthContext";
 
 const Chats = () => {
-  return (
-    // here to.. 
-    <div className='chats'> 
-      <div className="userChat">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwPAieQjFuAcdeSGbi4kUNplPR4vAJ_314Og&usqp=CAU" alt="" />
-        <div className="userChatInfo">
-          <span>Jane</span>
-          {/* here gives me another chat profile on my left bar */}
-          {/* below says the last message on the profile  */}
-          <p>hello</p>    
-        </div>
-      </div>
-      <div className="userChat">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwPAieQjFuAcdeSGbi4kUNplPR4vAJ_314Og&usqp=CAU" alt="" />
-        <div className="userChatInfo">
-          <span>Jane</span>
-          <p>hello</p>    
-        </div>
-      </div>
-      <div className="userChat">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwPAieQjFuAcdeSGbi4kUNplPR4vAJ_314Og&usqp=CAU" alt="" />
-        <div className="userChatInfo">
-          <span>Jane</span>
-          <p>hello</p>    
-        </div>
-      </div>
-    </div>
-  )
-}
+  const [chats, setChats] = useState([]);
+  const { currentUser } = useContext(AuthContext);
 
-export default Chats
+  useEffect(() => {
+    const getChats = () => {
+      const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+        setChats(doc.data());
+      });
+      return () => {
+        unsub();
+      };
+    };
+
+    currentUser.uid && getChats();
+  }, [currentUser.uid]);
+
+  console.log(Object.entries(chats));
+
+  return (
+    <div className='chats'> 
+      {Object.entries(chats)?.map(chat => (
+        <div className="userChat" key={chat[0]}>
+          <img src={chat[1].userInfo.photoURL} alt="" />
+          <div className="userChatInfo">
+            <span>{chat[1].userInfo.displayName}</span>
+            <p>{chat[1].lastMessage?.text}</p>    
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Chats;
